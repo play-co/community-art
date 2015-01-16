@@ -1,0 +1,16 @@
+{
+  "name": "community-art",
+  "author": "Game Closure",
+  "description": "Let the people provide art, so we can use it without attribution.",
+  "version": "0.1.0",
+  "repository": {},
+  "dependencies": { },
+  "scripts": {},
+  "devkit": {
+    "buildTargets": {},
+    "clientPaths": {
+      "communityart": "src"
+    },
+    "extensions": {}
+  }
+}
