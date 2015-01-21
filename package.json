@@ -2,7 +2,7 @@
   "name": "community-art",
   "author": "Game Closure",
   "description": "Let the people provide art, so we can use it without attribution.",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "repository": {},
   "dependencies": { },
   "scripts": {},

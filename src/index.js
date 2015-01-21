@@ -1,9 +1,14 @@
-var images = {
-  'splash': 'resources/images/splash.png',
-  'bg': 'resources/images/bg.png',
-  'alpaca': 'resources/images/alpaca.png'
-}
+var COMMUNITY_ART_PORTAL = 'resources/uuids/';
+var resources = {};
 
-exports = function(resource) {
-  return images[resource];  
+exports = function(uuid) {
+  var req = new XMLHttpRequest();
+
+  if (!(uuid in resources)) {
+    req.open('get', COMMUNITY_ART_PORTAL + uuid, false);
+    req.send();
+    resources[uuid] = JSON.parse(req.responseText);
+  }
+
+  return resources[uuid];
 }
