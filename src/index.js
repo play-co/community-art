@@ -11,6 +11,27 @@ var resources = {
   platform: {
     type: 'image',
     url: 'resources/images/platform.png'
+  },
+
+  flapping_bee: {
+    type: 'sprite',
+    url: 'resources/images/bees/yellow/yellowBee'
+  },
+  flat_forest: {
+    type: 'image',
+    url: 'resources/images/flat_forest.png'
+  },
+  foreground: {
+    type: 'image',
+    url: 'resources/images/foreground.png'
+  },
+  log: {
+    type: 'image',
+    url: 'resources/images/log.png'
+  },
+  hdrop: {
+    type: 'image',
+    url: 'resources/images/hdrop.png'
   }
 };
 
