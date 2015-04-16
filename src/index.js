@@ -1,38 +1,63 @@
+import ui.resource.loader as loader;
+var resourceMap = loader.getMap();
+
 var COMMUNITY_ART_PORTAL = 'resources/uuids/';
+var LOCAL_PREFIX = 'addons/community-art/images_ca/';
+
 var resources = {
   bg: {
     type: 'image',
-    url: 'resources/images/bg.png'
+    url: 'bg.png'
   },
   jumper: {
     type: 'image',
-    url: 'resources/images/jumper.png'
+    url: 'jumper.png'
   },
   platform: {
     type: 'image',
-    url: 'resources/images/platform.png'
+    url: 'platform.png'
   },
 
   flapping_bee: {
     type: 'sprite',
-    url: 'resources/images/bees/yellow/yellowBee'
+    url: 'bees/yellow/yellowBee'
   },
   flat_forest: {
     type: 'image',
-    url: 'resources/images/flat_forest.png'
+    url: 'flat_forest.png'
   },
   foreground: {
     type: 'image',
-    url: 'resources/images/foreground.png'
+    url: 'foreground.png'
   },
   log: {
     type: 'image',
-    url: 'resources/images/log.png'
+    url: 'log.png'
   },
   hdrop: {
     type: 'image',
-    url: 'resources/images/hdrop.png'
+    url: 'hdrop.png'
   }
+};
+
+// return the width of an image asset
+var getImageWidth = function(url) {
+    var map = resourceMap[url];
+    var width = 0;
+    if (map) {
+        width = map.w + map.marginLeft + map.marginRight;
+    }
+    return width;
+};
+
+// return the height of an image asset
+var getImageHeight = function(url) {
+    var map = resourceMap[url];
+    var height = 0;
+    if (map) {
+        height = map.h + map.marginTop + map.marginBottom;
+    }
+    return height;
 };
 
 exports = function(uuid) {
@@ -44,5 +69,12 @@ exports = function(uuid) {
     resources[uuid] = JSON.parse(req.responseText);
   }
 
-  return resources[uuid];
+  var resObj = resources[uuid];
+  var resUrl = LOCAL_PREFIX + resObj.url;
+  return {
+    type: resObj.type,
+    url: resUrl,
+    w: getImageWidth(resUrl),
+    h: getImageHeight(resUrl)
+  };
 }

@@ -11,6 +11,8 @@
     "clientPaths": {
       "communityart": "src"
     },
-    "extensions": {}
+    "extensions": {
+      "build": "plugin/build"
+    }
   }
 }
