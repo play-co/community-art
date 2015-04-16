@@ -1,0 +1,51 @@
+[
+  {
+    "xMultiplier": 0.2,
+    "xCanSpawn": true,
+    "xCanRelease": true,
+    "yMultiplier": 0,
+    "yCanSpawn": false,
+    "yCanRelease": false,
+    "pieceOptions": [
+      { "image": "addons/community-art/images_ca/themes/roman_theme/bg_back.png" }
+    ]
+  },
+  {
+    "xMultiplier": 0.4,
+    "xCanSpawn": true,
+    "xCanRelease": true,
+    "xGapRange": [50, 400],
+    "yMultiplier": 0,
+    "yCanSpawn": false,
+    "yCanRelease": false,
+    "pieceOptions": [
+      {
+        "image": "addons/community-art/images_ca/themes/roman_theme/cloud_1.png",
+        "styleRanges": { "y": [ 0, 600 ] }
+      },
+      {
+        "image": "addons/community-art/images_ca/themes/roman_theme/cloud_2.png",
+        "styleRanges": { "y": [ 0, 600 ] }
+      },
+      {
+        "image": "addons/community-art/images_ca/themes/roman_theme/cloud_3.png",
+        "styleRanges": { "y": [ 0, 600 ] }
+      }
+    ]
+  },
+  {
+    "xMultiplier": 0.8,
+    "xCanSpawn": true,
+    "xCanRelease": true,
+    "yMultiplier": 0,
+    "yCanSpawn": false,
+    "yCanRelease": false,
+    "pieceOptions": [
+      {
+        "y": 1024,
+        "yAlign": "bottom",
+        "image": "addons/community-art/images_ca/themes/roman_theme/bg_front.png"
+      }
+    ]
+  }
+]

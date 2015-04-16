@@ -3,6 +3,21 @@ var resourceMap = loader.getMap();
 
 var COMMUNITY_ART_PORTAL = 'resources/uuids/';
 var LOCAL_PREFIX = 'addons/community-art/images_ca/';
+var THEME_PREFIX = LOCAL_PREFIX + 'themes/';
+
+var candyConfig = {};
+var forestConfig = {};
+var romanConfig = {};
+var shoreConfig = {};
+
+try {
+  candyConfig = JSON.parse(CACHE[THEME_PREFIX + 'candy_theme/parallax.json']);
+  forestConfig = JSON.parse(CACHE[THEME_PREFIX + 'forest_theme/parallax.json']);
+  romanConfig = JSON.parse(CACHE[THEME_PREFIX + 'roman_theme/parallax.json']);
+  shoreConfig = JSON.parse(CACHE[THEME_PREFIX + 'shore_theme/parallax.json']);
+} catch(e) {
+  logger.log("ERROR LOADING PARALLAX CONFIG:", e);
+}
 
 var resources = {
   bg: {
@@ -37,6 +52,24 @@ var resources = {
   hdrop: {
     type: 'image',
     url: 'hdrop.png'
+  },
+
+  // themes
+  candy_theme: {
+    type: 'parallax',
+    config: candyConfig
+  },
+  forest_theme: {
+    type: 'parallax',
+    config: forestConfig
+  },
+  roman_theme: {
+    type: 'parallax',
+    config: romanConfig
+  },
+  shore_theme: {
+    type: 'parallax',
+    config: shoreConfig
   }
 };
 
@@ -70,11 +103,20 @@ exports = function(uuid) {
   }
 
   var resObj = resources[uuid];
-  var resUrl = LOCAL_PREFIX + resObj.url;
-  return {
-    type: resObj.type,
-    url: resUrl,
-    w: getImageWidth(resUrl),
-    h: getImageHeight(resUrl)
-  };
+  if (resObj.type === 'parallax') {
+    var resUrl = THEME_PREFIX + uuid + '/';
+    return {
+      type: resObj.type,
+      config: resObj.config,
+      url: resUrl
+    };
+  } else {
+    var resUrl = LOCAL_PREFIX + resObj.url;
+    return {
+      type: resObj.type,
+      url: resUrl,
+      w: getImageWidth(resUrl),
+      h: getImageHeight(resUrl)
+    };
+  }
 }

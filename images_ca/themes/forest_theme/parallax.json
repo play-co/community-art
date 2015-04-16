@@ -1,0 +1,82 @@
+[
+  {
+    "id": "bg",
+    "xMultiplier": 0.05,
+    "xCanSpawn": true,
+    "xCanRelease": true,
+    "yMultiplier": 0,
+    "yCanSpawn": false,
+    "yCanRelease": false,
+    "pieceOptions": [
+      { "image": "addons/community-art/images_ca/themes/forest_theme/bg_back.png" }
+    ]
+  },
+  {
+    "id": "trees",
+    "xMultiplier": 0.4,
+    "xCanSpawn": true,
+    "xCanRelease": true,
+    "xGapRange": [200, 500],
+    "yMultiplier": 0,
+    "yCanSpawn": false,
+    "yCanRelease": false,
+    "pieceOptions": [
+      { "image": "addons/community-art/images_ca/themes/forest_theme/tree__1.png" },
+      { "image": "addons/community-art/images_ca/themes/forest_theme/tree__2.png" },
+      { "image": "addons/community-art/images_ca/themes/forest_theme/tree__3.png" }
+    ]
+  },
+  {
+    "id": "bushes",
+    "xMultiplier": 0.6,
+    "xCanSpawn": true,
+    "xCanRelease": true,
+    "xGapRange": [200, 500],
+    "yMultiplier": 0,
+    "yCanSpawn": false,
+    "yCanRelease": false,
+    "pieceOptions": [
+      {
+        "image": "addons/community-art/images_ca/themes/forest_theme/bush__1.png",
+        "yAlign": "bottom",
+        "y": 930
+      },
+      {
+        "image": "addons/community-art/images_ca/themes/forest_theme/bush__2.png",
+        "yAlign": "bottom",
+        "y": 930
+      },
+      {
+        "image": "addons/community-art/images_ca/themes/forest_theme/bush__3.png",
+        "yAlign": "bottom",
+        "y": 930
+      },
+      {
+        "image": "addons/community-art/images_ca/themes/forest_theme/bush__4.png",
+        "yAlign": "bottom",
+        "y": 930
+      },
+      {
+        "image": "addons/community-art/images_ca/themes/forest_theme/bush__5.png",
+        "yAlign": "bottom",
+        "y": 930
+      }
+    ]
+  },
+  {
+    "id": "hills",
+    "xMultiplier": 0.8,
+    "xCanSpawn": true,
+    "xCanRelease": true,
+    "yMultiplier": 0,
+    "yCanSpawn": false,
+    "yCanRelease": false,
+    "pieceOptions": [
+      {
+        "y": 1024,
+        "yAlign": "bottom",
+        "image": "addons/community-art/images_ca/themes/forest_theme/bg_front.png"
+      }
+    ]
+  }
+]

@@ -1,0 +1,117 @@
+[
+  {
+    "xMultiplier": 0,
+    "xCanSpawn": true,
+    "xCanRelease": true,
+    "yMultiplier": 0,
+    "yCanSpawn": false,
+    "yCanRelease": false,
+    "pieceOptions": [
+      {
+        "image": "addons/community-art/images_ca/themes/shore_theme/sky.png",
+        "width": 1024,
+        "height": 650
+      }
+    ]
+  },
+  {
+    "xMultiplier": 0.15,
+    "xCanSpawn": true,
+    "xCanRelease": true,
+    "xGapRange": [50, 400],
+    "yMultiplier": 0,
+    "yCanSpawn": false,
+    "yCanRelease": false,
+    "pieceOptions": [
+      {
+        "image": "addons/community-art/images_ca/themes/shore_theme/cloud1.png",
+        "styleRanges": { "y": [ 0, 600 ] }
+      },
+      {
+        "image": "addons/community-art/images_ca/themes/shore_theme/cloud2.png",
+        "styleRanges": { "y": [ 0, 600 ] }
+      },
+      {
+        "image": "addons/community-art/images_ca/themes/shore_theme/cloud3.png",
+        "styleRanges": { "y": [ 0, 600 ] }
+      }
+    ]
+  },
+  {
+    "xMultiplier": 0.2,
+    "xCanSpawn": true,
+    "xCanRelease": true,
+    "xGapRange": [50, 400],
+    "yMultiplier": 0,
+    "yCanSpawn": false,
+    "yCanRelease": false,
+    "pieceOptions": [
+      {
+        "image": "addons/community-art/images_ca/themes/shore_theme/hill1.png",
+        "yAlign": "bottom",
+        "y": 650
+      },
+      {
+        "image": "addons/community-art/images_ca/themes/shore_theme/hill2.png",
+        "yAlign": "bottom",
+        "y": 650
+      },
+      {
+        "image": "addons/community-art/images_ca/themes/shore_theme/hill3.png",
+        "yAlign": "bottom",
+        "y": 650
+      },
+      {
+        "image": "addons/community-art/images_ca/themes/shore_theme/hill4.png",
+        "yAlign": "bottom",
+        "y": 650
+      }
+    ]
+  },
+  {
+    "xMultiplier": 0.4,
+    "xCanSpawn": true,
+    "xCanRelease": true,
+    "yMultiplier": 0,
+    "yCanSpawn": false,
+    "yCanRelease": false,
+    "pieceOptions": [
+      {
+        "y": 1024,
+        "yAlign": "bottom",
+        "image": "addons/community-art/images_ca/themes/shore_theme/shore.png"
+      }
+    ]
+  },
+  {
+    "xMultiplier": 0.4,
+    "xCanSpawn": true,
+    "xCanRelease": true,
+    "xGapRange": [50, 400],
+    "yMultiplier": 0,
+    "yCanSpawn": false,
+    "yCanRelease": false,
+    "pieceOptions": [
+      {
+        "image": "addons/community-art/images_ca/themes/shore_theme/bush1.png",
+        "yAlign": "bottom",
+        "y": 750
+      },
+      {
+        "image": "addons/community-art/images_ca/themes/shore_theme/bush2.png",
+        "yAlign": "bottom",
+        "y": 750
+      },
+      {
+        "image": "addons/community-art/images_ca/themes/shore_theme/bush3.png",
+        "yAlign": "bottom",
+        "y": 750
+      },
+      {
+        "image": "addons/community-art/images_ca/themes/shore_theme/cave.png",
+        "yAlign": "bottom",
+        "y": 750
+      }
+    ]
+  }
+]

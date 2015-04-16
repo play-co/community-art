@@ -1,0 +1,73 @@
+[
+  {
+    "xMultiplier": 0.1,
+    "xCanSpawn": true,
+    "xCanRelease": true,
+    "yMultiplier": 0,
+    "yCanSpawn": false,
+    "yCanRelease": false,
+    "pieceOptions": [
+      { "image": "addons/community-art/images_ca/themes/candy_theme/background.png" }
+    ]
+  },
+  {
+    "xMultiplier": 0.4,
+    "xCanSpawn": true,
+    "xCanRelease": true,
+    "yMultiplier": 0,
+    "yCanSpawn": false,
+    "yCanRelease": false,
+    "pieceOptions": [
+      {
+        "y": 1024,
+        "yAlign": "bottom",
+        "image": "addons/community-art/images_ca/themes/candy_theme/foreground.png"
+      }
+    ]
+  },
+  {
+    "xMultiplier": 0.5,
+    "xCanSpawn": true,
+    "xCanRelease": true,
+    "xGapRange": [0, 600],
+    "yMultiplier": 0,
+    "yCanSpawn": false,
+    "yCanRelease": false,
+    "ordered": true,
+    "pieceOptions": [
+      {
+        "y": 1024,
+        "yAlign": "bottom",
+        "image": "addons/community-art/images_ca/themes/candy_theme/big_lollipop.png",
+        "styleRanges": { "scale": [0.5, 1] },
+        "anchorY": 961
+      },
+      {
+        "y": 1024,
+        "yAlign": "bottom",
+        "image": "addons/community-art/images_ca/themes/candy_theme/small_lollipops.png",
+        "styleRanges": { "scale": [0.5, 1] },
+        "anchorY": 925
+      }
+    ]
+  },
+  {
+    "xMultiplier": 0.7,
+    "xCanSpawn": true,
+    "xCanRelease": true,
+    "xGapRange": [0, 600],
+    "yMultiplier": 0,
+    "yCanSpawn": false,
+    "yCanRelease": false,
+    "ordered": true,
+    "pieceOptions": [
+      {
+        "y": 1024,
+        "yAlign": "bottom",
+        "image": "addons/community-art/images_ca/themes/candy_theme/small_lollipops.png",
+        "styleRanges": { "scale": [0.5, 1] },
+        "anchorY": 925
+      }
+    ]
+  }
+]
