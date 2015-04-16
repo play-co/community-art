@@ -1,0 +1,153 @@
+[
+  {
+    "xMultiplier": 0,
+    "xCanSpawn": true,
+    "xCanRelease": true,
+    "yMultiplier": 0,
+    "yCanSpawn": false,
+    "yCanRelease": false,
+    "pieceOptions": [
+      {
+        "image": "addons/community-art/images_ca/themes/medieval_theme/sky.png",
+        "width": 1024,
+        "height": 650
+      }
+    ]
+  },
+  {
+    "xMultiplier": 0.05,
+    "xCanSpawn": true,
+    "xCanRelease": true,
+    "xGapRange": [0, 200],
+    "yMultiplier": 0,
+    "yCanSpawn": false,
+    "yCanRelease": false,
+    "pieceOptions": [
+      {
+        "image": "addons/community-art/images_ca/themes/medieval_theme/cloud1.png",
+        "styleRanges": { "y": [ 0, 500 ], "scale": [ 1, 2 ] }
+      },
+      {
+        "image": "addons/community-art/images_ca/themes/medieval_theme/cloud2.png",
+        "styleRanges": { "y": [ 0, 500 ], "scale": [ 1, 2 ] }
+      },
+      {
+        "image": "addons/community-art/images_ca/themes/medieval_theme/cloud3.png",
+        "styleRanges": { "y": [ 0, 500 ], "scale": [ 1, 2 ] }
+      },
+      {
+        "image": "addons/community-art/images_ca/themes/medieval_theme/cloud4.png",
+        "styleRanges": { "y": [ 0, 500 ], "scale": [ 1, 2 ] }
+      },
+      {
+        "image": "addons/community-art/images_ca/themes/medieval_theme/cloud5.png",
+        "styleRanges": { "y": [ 0, 500 ], "scale": [ 1, 2 ] }
+      }
+    ]
+  },
+  {
+    "xMultiplier": 0.1,
+    "xCanSpawn": true,
+    "xCanRelease": true,
+    "xGapRange": [0, 200],
+    "yMultiplier": 0,
+    "yCanSpawn": false,
+    "yCanRelease": false,
+    "pieceOptions": [
+      {
+        "image": "addons/community-art/images_ca/themes/medieval_theme/cloud1.png",
+        "styleRanges": { "y": [ 0, 500 ] }
+      },
+      {
+        "image": "addons/community-art/images_ca/themes/medieval_theme/cloud2.png",
+        "styleRanges": { "y": [ 0, 500 ] }
+      },
+      {
+        "image": "addons/community-art/images_ca/themes/medieval_theme/cloud3.png",
+        "styleRanges": { "y": [ 0, 500 ] }
+      },
+      {
+        "image": "addons/community-art/images_ca/themes/medieval_theme/cloud4.png",
+        "styleRanges": { "y": [ 0, 500 ] }
+      },
+      {
+        "image": "addons/community-art/images_ca/themes/medieval_theme/cloud5.png",
+        "styleRanges": { "y": [ 0, 500 ] }
+      }
+    ]
+  },
+  {
+    "xMultiplier": 0.1,
+    "xCanSpawn": true,
+    "xCanRelease": true,
+    "yMultiplier": 0,
+    "yCanSpawn": false,
+    "yCanRelease": false,
+    "pieceOptions": [
+      {
+        "image": "addons/community-art/images_ca/themes/medieval_theme/farground_mountain.png",
+        "y": 550
+      }
+    ]
+  },
+  {
+    "xMultiplier": 0.25,
+    "xCanSpawn": true,
+    "xCanRelease": true,
+    "xGapRange": [50, 400],
+    "yMultiplier": 0,
+    "yCanSpawn": false,
+    "yCanRelease": false,
+    "pieceOptions": [
+      {
+        "image": "addons/community-art/images_ca/themes/medieval_theme/farground_tower1.png",
+        "yAlign": "bottom",
+        "y": 720
+      },
+      {
+        "image": "addons/community-art/images_ca/themes/medieval_theme/farground_tower2.png",
+        "yAlign": "bottom",
+        "y": 720
+      },
+      {
+        "image": "addons/community-art/images_ca/themes/medieval_theme/farground_tower3.png",
+        "yAlign": "bottom",
+        "y": 720
+      },
+      {
+        "image": "addons/community-art/images_ca/themes/medieval_theme/farground_tower4.png",
+        "yAlign": "bottom",
+        "y": 720
+      }
+    ]
+  },
+  {
+    "xMultiplier": 0.4,
+    "xCanSpawn": true,
+    "xCanRelease": true,
+    "yMultiplier": 0,
+    "yCanSpawn": false,
+    "yCanRelease": false,
+    "pieceOptions": [
+      {
+        "y": 670,
+        "image": "addons/community-art/images_ca/themes/medieval_theme/farground_wall.png"
+      }
+    ]
+  },
+  {
+    "xMultiplier": 0.6,
+    "xCanSpawn": true,
+    "xCanRelease": true,
+    "yMultiplier": 0,
+    "yCanSpawn": false,
+    "yCanRelease": false,
+    "pieceOptions": [
+      {
+        "y": 1024,
+        "yAlign": "bottom",
+        "image": "addons/community-art/images_ca/themes/medieval_theme/midground_brush.png"
+      }
+    ]
+  }
+]
