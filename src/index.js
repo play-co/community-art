@@ -57,6 +57,7 @@ var resources = {
 
   spaceship: {
     type: 'sprite',
+    defaultAnimation: 'fly',
     url: 'swarm/player'
   },
 
