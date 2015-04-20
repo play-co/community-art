@@ -1,4 +1,5 @@
 import ui.resource.loader as loader;
+
 var resourceMap = loader.getMap();
 
 var COMMUNITY_ART_PORTAL = 'resources/uuids/';
@@ -54,6 +55,11 @@ var resources = {
     url: 'hdrop.png'
   },
 
+  spaceship: {
+    type: 'sprite',
+    url: 'swarm/player'
+  },
+
   // themes
   candy_theme: {
     type: 'parallax',
@@ -94,12 +100,15 @@ var getImageHeight = function(url) {
 };
 
 exports = function(uuid) {
-  var req = new XMLHttpRequest();
-
   if (!(uuid in resources)) {
-    req.open('get', COMMUNITY_ART_PORTAL + uuid, false);
-    req.send();
-    resources[uuid] = JSON.parse(req.responseText);
+    // var req = new XMLHttpRequest();
+    // req.open('get', COMMUNITY_ART_PORTAL + uuid, false);
+    // req.send();
+    // resources[uuid] = JSON.parse(req.responseText);
+    resources[uuid] = {
+      type: 'image',
+      url: uuid + '.png'
+    };
   }
 
   var resObj = resources[uuid];
@@ -119,4 +128,19 @@ exports = function(uuid) {
       h: getImageHeight(resUrl)
     };
   }
-}
+};
+
+exports.getUrl = function(id, name) {
+  return 'https://s3-us-west-2.amazonaws.com/weeby-community-art/' + id + '/' + name + '.png';
+};
+
+exports.preload = function(array) {
+  for (var i = 0; i < array.length; i++) {
+    var url = exports.getUrl(array[i][0], array[i][1]);
+    var img = new Image(url);
+    img.addEventListener('load', function() {
+      debugger
+    });
+    img.src = url;
+  }
+};
