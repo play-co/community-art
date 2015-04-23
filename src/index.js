@@ -10,12 +10,18 @@ var candyConfig = {};
 var forestConfig = {};
 var romanConfig = {};
 var shoreConfig = {};
+var medievalConfig = {};
+var hideoutConfig = {};
+var oceanConfig = {};
 
 try {
   candyConfig = JSON.parse(CACHE[THEME_PREFIX + 'candy_theme/parallax.json']);
   forestConfig = JSON.parse(CACHE[THEME_PREFIX + 'forest_theme/parallax.json']);
   romanConfig = JSON.parse(CACHE[THEME_PREFIX + 'roman_theme/parallax.json']);
   shoreConfig = JSON.parse(CACHE[THEME_PREFIX + 'shore_theme/parallax.json']);
+  medievalConfig = JSON.parse(CACHE[THEME_PREFIX + 'medieval_theme/parallax.json']);
+  hideoutConfig = JSON.parse(CACHE[THEME_PREFIX + 'hideout_theme/parallax.json']);
+  oceanConfig = JSON.parse(CACHE[THEME_PREFIX + 'ocean_theme/parallax.json']);
 } catch(e) {
   logger.log("ERROR LOADING PARALLAX CONFIG:", e);
 }
@@ -77,6 +83,18 @@ var resources = {
   shore_theme: {
     type: 'parallax',
     config: shoreConfig
+  },
+  medieval_theme: {
+    type: 'parallax',
+    config: medievalConfig
+  },
+  hideout_theme: {
+    type: 'parallax',
+    config: hideoutConfig
+  },
+  ocean_theme: {
+    type: 'parallax',
+    config: oceanConfig
   }
 };
 

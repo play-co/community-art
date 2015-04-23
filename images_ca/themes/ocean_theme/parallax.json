@@ -1,0 +1,110 @@
+[
+  {
+    "xMultiplier": 0,
+    "xCanSpawn": true,
+    "xCanRelease": true,
+    "yMultiplier": 0,
+    "yCanSpawn": false,
+    "yCanRelease": false,
+    "pieceOptions": [
+      {
+        "image": "addons/community-art/images_ca/themes/ocean_theme/sky.png",
+        "width": 1024,
+        "height": 650
+      }
+    ]
+  },
+  {
+    "xMultiplier": 0.1,
+    "xCanSpawn": true,
+    "xCanRelease": true,
+    "xGapRange": [50, 400],
+    "yMultiplier": 0,
+    "yCanSpawn": false,
+    "yCanRelease": false,
+    "pieceOptions": [
+      {
+        "image": "addons/community-art/images_ca/themes/ocean_theme/cloud1.png",
+        "styleRanges": { "y": [ 0, 600 ] }
+      },
+      {
+        "image": "addons/community-art/images_ca/themes/ocean_theme/cloud2.png",
+        "styleRanges": { "y": [ 0, 600 ] }
+      },
+      {
+        "image": "addons/community-art/images_ca/themes/ocean_theme/cloud3.png",
+        "styleRanges": { "y": [ 0, 600 ] }
+      }
+    ]
+  },
+  {
+    "xMultiplier": 0,
+    "xCanSpawn": true,
+    "xCanRelease": true,
+    "yMultiplier": 0,
+    "yCanSpawn": false,
+    "yCanRelease": false,
+    "pieceOptions": [
+      {
+        "image": "addons/community-art/images_ca/themes/ocean_theme/background_ocean.png",
+        "y": 1024,
+        "yAlign": "bottom",
+        "height": 400
+      }
+    ]
+  },
+  {
+    "xMultiplier": 0.15,
+    "xCanSpawn": true,
+    "xCanRelease": true,
+    "xGapRange": [50, 400],
+    "yMultiplier": 0,
+    "yCanSpawn": false,
+    "yCanRelease": false,
+    "pieceOptions": [
+      {
+        "image": "addons/community-art/images_ca/themes/ocean_theme/mountain1.png",
+        "yAlign": "bottom",
+        "y": 650
+      },
+      {
+        "image": "addons/community-art/images_ca/themes/ocean_theme/mountain2.png",
+        "yAlign": "bottom",
+        "y": 650
+      },
+      {
+        "image": "addons/community-art/images_ca/themes/ocean_theme/mountain3.png",
+        "yAlign": "bottom",
+        "y": 650
+      },
+      {
+        "image": "addons/community-art/images_ca/themes/ocean_theme/volcano.png",
+        "yAlign": "bottom",
+        "y": 650
+      }
+    ]
+  },
+  {
+    "xMultiplier": 0.3,
+    "xCanSpawn": true,
+    "xCanRelease": true,
+    "xGapRange": [200, 600],
+    "yMultiplier": 0,
+    "yCanSpawn": false,
+    "yCanRelease": false,
+    "pieceOptions": [
+      {
+        "image": "addons/community-art/images_ca/themes/ocean_theme/island_large.png",
+        "yAlign": "bottom",
+        "xAlign": "left",
+        "styleRanges": { "y": [ 700, 800 ], "scale": [ 0.8, 1.2 ] }
+      },
+      {
+        "image": "addons/community-art/images_ca/themes/ocean_theme/island_small.png",
+        "xAlign": "left",
+        "yAlign": "bottom",
+        "styleRanges": { "y": [ 700, 800 ], "scale": [ 0.8, 1.2 ] }
+      }
+    ]
+  }
+]
