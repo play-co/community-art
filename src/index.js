@@ -57,17 +57,26 @@ var _init = function() {
       console.warn('> Skipping key, keyData not valid');
     } else {
       // Try to import it and add the imported results to the _resources
-      try {
-        _resources[key] = jsio('import src.communityart.' + key.replace('/', '.'));
-        // var srcLocation = 'resources/communityart/' + key + '.js';
-        // _resources[key] = eval(CACHE[srcLocation])[0];
-        continue;
-      } catch (e) {
-        console.error('> Could not import config object', e);
+      if (keyData.ext === '.js') {
+        try {
+          _resources[key] = jsio('import src.communityart.' + key.replace('/', '.'));
+          // var srcLocation = 'resources/communityart/' + key + '.js';
+          // _resources[key] = eval(CACHE[srcLocation])[0];
+          continue;
+        } catch (e) {
+          console.error('> Could not import config object', e);
+          missingKeys.push(key);
+        }
+      } else {
+        _resources[key] = _caManifest[key]
+            || {
+              artType: 'ImageView',
+              opts: {
+                url: 'resources/communityart/' + key + keyData.ext
+              }
+            };
       }
     }
-
-    missingKeys.push(key);
   }
 
   if (missingKeys.length) {
@@ -156,8 +165,10 @@ exports = function(key) {
   } else {
     // TODO Look in the local project resources to see if it is there
     resObj = {
-      type: 'image',
-      url: key + '.png'
+      artType: 'ImageView',
+      opts: {
+        url: key + '.png'
+      }
     };
   }
 
@@ -176,23 +187,25 @@ exports = function(key) {
   //   };
   // } else {
 
-  var manifestEntry = _caManifest[key];
-  var isLocal = manifestEntry && !manifestEntry.isRemote;
-  var resUrl = isLocal
-      ? (resObj.url || 'resources/communityart/' + key + '.png')
-      : (manifestEntry && manifestEntry.url);
+  // var manifestEntry = _caManifest[key];
+  // var isLocal = manifestEntry && !manifestEntry.isRemote;
+  // var resUrl = isLocal
+  //     ? (resObj.url || resObj.opts.url || 'resources/communityart/' + key + '.png')
+  //     : (manifestEntry && manifestEntry.url);
 
-  if (!resUrl) {
-    console.error('Could not determine resUrl for:', key);
-  }
+  // if (!resUrl) {
+  //   console.error('Could not determine resUrl for:', key);
+  // }
 
-  var w = resObj.width || getImageWidth(resUrl);
-  var h = resObj.height || getImageHeight(resUrl);
+  // var w = resObj.width || getImageWidth(resUrl);
+  // var h = resObj.height || getImageHeight(resUrl);
 
-  return {
-    type: resObj.artType,
-    url: resUrl,
-    w: w,
-    h: h
-  };
+  // return {
+  //   type: resObj.artType,
+  //   url: resUrl,
+  //   w: w,
+  //   h: h
+  // };
+
+  return resObj;
 };

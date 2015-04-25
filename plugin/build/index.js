@@ -86,6 +86,8 @@ exports.onBeforeBuild = function (devkitAPI, app, config, cb) {
           for (var i = 0; i < missingKeys.length; i++) {
             var missingKey = missingKeys[i];
             var missingKeyResponse = keyMap[missingKey];
+            missingKeyResponse.ext = path.extname(missingKeyResponse.url);
+
             if (!missingKeyResponse) {
               logger.warn('key not found in nimbus response:', missingKey);
               continue;
@@ -106,11 +108,11 @@ exports.onBeforeBuild = function (devkitAPI, app, config, cb) {
             };
 
             // queue up the js to download as well
-            var jsUrl = artUrl.substring(0, artUrl.lastIndexOf('.')) + '.js';
-            artDownloader = artDownloader.get(jsUrl, caJsDir);
-            urlMap[jsUrl] = {
-              key: missingKey
-            };
+            // var jsUrl = artUrl.substring(0, artUrl.lastIndexOf('.')) + '.js';
+            // artDownloader = artDownloader.get(jsUrl, caJsDir);
+            // urlMap[jsUrl] = {
+            //   key: missingKey
+            // };
 
             caManifest[missingKey] = missingKeyResponse;
           }
@@ -144,8 +146,17 @@ exports.onBeforeBuild = function (devkitAPI, app, config, cb) {
                   var keyName = urlMap[file.url].key;
                   var newFilePath = path.join(fileDir, keyName + fileExt);
 
-                  fs.renameSync(file.path, newFilePath);
-                  logger.log(fileDir);
+                  logger.log('> Renaming: ', file.path);
+                  try {
+                    var newDir = path.dirname(newFilePath);
+                    if (!fs.existsSync(newDir)) {
+                      fs.mkdirSync(newDir);
+                    }
+
+                    fs.renameSync(file.path, newFilePath);
+                  } catch (e) {
+                    logger.error('Could not rename to:', newFilePath, e);
+                  }
                 }
 
                 // write out the communityartManifest.json
