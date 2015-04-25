@@ -166,6 +166,11 @@ var resolveKeys = function(array, cb) {
 
 
 _init();
+/**
+  * @class communityart
+  * @arg {string} key
+  * @returns {Object} artData
+  */
 exports = function(key) {
   var resObj;
   if (key in _resources) {

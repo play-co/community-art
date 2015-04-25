@@ -49,6 +49,7 @@ exports.onBeforeBuild = function (devkitAPI, app, config, cb) {
     for (var i = 0; i < caKeys.length; i++) {
       var caKey = caKeys[i];
 
+      // TODO not all are js?
       var keyPath = path.join(caJsDir, caKey + '.js');
       if (!fs.existsSync(keyPath)) {
         logger.log('Missing key:', caKey, keyPath);
