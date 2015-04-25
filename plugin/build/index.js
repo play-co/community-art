@@ -144,7 +144,8 @@ exports.onBeforeBuild = function (devkitAPI, app, config, cb) {
                   var fileExt = path.extname(file.path);
 
                   var keyName = urlMap[file.url].key;
-                  var newFilePath = path.join(fileDir, keyName + fileExt);
+                  var destDir = fileExt === '.js' ? caJsDir : caDir;
+                  var newFilePath = path.join(destDir, keyName + fileExt);
 
                   logger.log('> Renaming: ', file.path);
                   try {

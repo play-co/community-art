@@ -68,13 +68,21 @@ var _init = function() {
           missingKeys.push(key);
         }
       } else {
-        _resources[key] = _caManifest[key]
-            || {
+        var resObj = {
               artType: 'ImageView',
-              opts: {
-                url: 'resources/communityart/' + key + keyData.ext
-              }
+              url: key + keyData.ext,
+              opts: {}
             };
+        _resources[key] = resObj;
+
+        // Add the proper path to the key urls
+        if (resObj.url.indexOf('http') !== 0) {
+          resObj.url = 'resources/communityart/' + _resources[key].url;
+
+          // Default sizes
+          resObj.w = resObj.w || getImageWidth(resObj.url);
+          resObj.h = resObj.h || getImageHeight(resObj.url);
+        }
       }
     }
   }
