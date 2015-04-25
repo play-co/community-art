@@ -1,0 +1,13 @@
+{
+  "tags": {
+    "allowUnknownTags": true
+  },
+  "source": {
+    "include": ["src", "plugin"]
+  },
+  "plugins": [],
+  "templates": {
+    "applicationName": "Community Art",
+    "linenums": true
+  }
+}
