@@ -32,17 +32,22 @@ var _init = function() {
   // Load the communityartManifest.json
   var caManifestPath = 'resources/communityart/communityartManifest.json';
 
-  if (!CONFIG.modules.communityart) {
-    console.error('No communityart in CONFIG.modules ... is it in your manifest?');
+  _jsCache = {};
+  _resources = {};
+  console.log('==== ==== CommunityArt ==== ====');
+
+  _loadFromManifest();
+  _loadFromConfig();
+};
+
+var _loadFromManifest = function() {
+  if (!CONFIG.modules || !CONFIG.modules.communityart) {
+    console.log('CommunityArt: No communityart in CONFIG.modules ... is it in your manifest?');
     return;
   }
 
-  _jsCache = {};
   _caConfig = CONFIG.modules.communityart;
   _caManifest = JSON.parse(CACHE[caManifestPath]);
-  console.log('==== ==== CommunityArt ==== ====');
-
-  _resources = {};
   var missingKeys = [];
 
   // Try to import all of the requested keys
@@ -91,6 +96,14 @@ var _init = function() {
     resolveKeys(missingKeys);
   }
 };
+
+var _loadFromConfig = function() {
+  try {
+    jsio('import src.communityartConfig');
+  } catch (e) {
+    console.log('CommunityArt: no default config could be imported');
+  }
+}
 
 /** Takes an array of keys, tries to figure out what they should be and adds
     them to _resources */
@@ -153,7 +166,7 @@ var resolveKeys = function(array, cb) {
             completeConfigRequests++;
             if (completeConfigRequests >= configRequestCount) {
               console.log('CommunityArt: Loading complete!');
-              debugger
+              // debugger
               cb && cb();
             }
           });
@@ -161,22 +174,47 @@ var resolveKeys = function(array, cb) {
     });
 };
 
+var getTypeFromResource = function(type, resource) {
+  if (Array.isArray(resource)) {
+    for (var i = 0; i < resource.length; ++i) {
+      var res = getTypeFromResource(type, resource[i]);
+      if (res) {
+        return res;
+      }
+    }
+    return null;
+  }
+
+  // Verify the resource type matches
+  if (resource.type === type) {
+    return resource;
+  }
+  return null;
+};
 
 // TODO some sort of preloading for remote images?
 
-
-_init();
 /**
   * @class communityart
   * @arg {string} key
+  * @arg {string} [type]
   * @returns {Object} artData
   */
-exports = function(key) {
+exports = function(key, type) {
+  // Determine if the key is a key or a local url
+  if (typeof key === 'string' && key.indexOf('resources/') === 0) {
+    // If it is a local url, return a default opts object
+    return {
+      url: key
+    };
+  }
+
+  // If it is a key, return either the specified type, or the defualt if no type was specified
   var resObj;
   if (key in _resources) {
     resObj = _resources[key];
   } else {
-    // TODO Look in the local project resources to see if it is there
+    // TODO: cache a default object in _resources
     resObj = {
       artType: 'ImageView',
       opts: {
@@ -185,40 +223,97 @@ exports = function(key) {
     };
   }
 
-  // resObj can be an array, in this function we want the default (first)
-  if (Array.isArray(resObj)) {
-    resObj = resObj[0];
+  // Check for a requested type
+  var requestedTypeResource;
+  if (type) {
+    requestedTypeResource = getTypeFromResource(type, resObj);
+  }
+  // either the type is not defined, or we could not find that type
+  if (!type || !requestedTypeResource) {
+    if (Array.isArray(resObj)) {
+      requestedTypeResource = resObj[0];
+    } else {
+      requestedTypeResource = resObj;
+    }
   }
 
-  // TODO implement special cases
-  // if (resObj.artType === 'devkit-parallax') {
-  //   var resUrl = THEME_PREFIX + key + '/';
-  //   return {
-  //     type: resObj.artType,
-  //     config: resObj.config,
-  //     url: resUrl
-  //   };
-  // } else {
-
-  // var manifestEntry = _caManifest[key];
-  // var isLocal = manifestEntry && !manifestEntry.isRemote;
-  // var resUrl = isLocal
-  //     ? (resObj.url || resObj.opts.url || 'resources/communityart/' + key + '.png')
-  //     : (manifestEntry && manifestEntry.url);
-
-  // if (!resUrl) {
-  //   console.error('Could not determine resUrl for:', key);
-  // }
-
-  // var w = resObj.width || getImageWidth(resUrl);
-  // var h = resObj.height || getImageHeight(resUrl);
-
-  // return {
-  //   type: resObj.artType,
-  //   url: resUrl,
-  //   w: w,
-  //   h: h
-  // };
-
-  return resObj;
+  // return
+  return requestedTypeResource.opts;
 };
+
+/**
+  * Easy to use, easy to abuse. Pass either a key, or an object. Strings will be
+  * looked up using `communityart(key)`, other types of keys will just be returned.
+  * @function communityart.getResource
+  * @arg {String|Object} key
+  * @arg {String}        [type]
+  * @returns {Object}    opts
+  */
+exports.getResource = function(key, type) {
+  if (typeof key === 'string') {
+    return exports(key, type);
+  }
+  return key;
+};
+
+/**
+  * @function communityart.create
+  * @arg {string} key
+  * @arg {string} [type]
+  * @returns {View} newView
+  */
+exports.create = function(key, type) {
+  throw new Error('TODO: implement');
+};
+
+/**
+ * @typedef {function} CaHandlerFunction
+ * @arg {string} key
+ * @arg {CaInfo} info
+ * @arg {Object} opts
+ * @returns {View} newView
+ */
+
+/**
+ * @typedef {Object} CaInfo
+ * @property {string} type - The type of handler that this opts expects
+ * @property {Object} opts - Opts to be passed to the creation handler
+ */
+
+/**
+  * @function communityart.registerHandler
+  * @arg {string} type
+  * @arg {CaHandlerFunction} handlerFn
+  * @returns {View} newView
+  */
+exports.registerHandler = function(key, type) {
+  throw new Error('TODO: implement');
+};
+
+/**
+  * @function communityart.registerConfig
+  * @arg {string} key
+  * @arg {CaInfo|CaInfo[]} config
+  */
+exports.registerConfig = function(key, config) {
+  console.log('CommunityArt: registering config for', key);
+  if (key in _resources) {
+    // already exists, add to the existing key
+    if (Array.isArray(config)) {
+      _resources[key] = _resources[key].concat(config);
+    } else {
+      _resources[key].push(config);
+    }
+  } else {
+    // doesn't already exist, just set
+    if (!Array.isArray(config)) {
+      config = [config];
+    }
+    _resources[key] = config;
+  }
+};
+
+// To avoid circular imports... we still want to run initilization, but we want the
+// existing exports to be available.
+GC.communityart = exports;
+_init();
