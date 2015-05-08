@@ -1,104 +1,9 @@
-import ui.resource.loader as loader;
+import util.ajax as ajax;
 
+import ui.resource.loader as loader;
 var resourceMap = loader.getMap();
 
-var COMMUNITY_ART_PORTAL = 'resources/uuids/';
-var LOCAL_PREFIX = 'addons/community-art/images_ca/';
-var THEME_PREFIX = LOCAL_PREFIX + 'themes/';
-
-var candyConfig = {};
-var forestConfig = {};
-var romanConfig = {};
-var shoreConfig = {};
-var medievalConfig = {};
-var hideoutConfig = {};
-var oceanConfig = {};
-
-try {
-  candyConfig = JSON.parse(CACHE[THEME_PREFIX + 'candy_theme/parallax.json']);
-  forestConfig = JSON.parse(CACHE[THEME_PREFIX + 'forest_theme/parallax.json']);
-  romanConfig = JSON.parse(CACHE[THEME_PREFIX + 'roman_theme/parallax.json']);
-  shoreConfig = JSON.parse(CACHE[THEME_PREFIX + 'shore_theme/parallax.json']);
-  medievalConfig = JSON.parse(CACHE[THEME_PREFIX + 'medieval_theme/parallax.json']);
-  hideoutConfig = JSON.parse(CACHE[THEME_PREFIX + 'hideout_theme/parallax.json']);
-  oceanConfig = JSON.parse(CACHE[THEME_PREFIX + 'ocean_theme/parallax.json']);
-} catch(e) {
-  logger.log("ERROR LOADING PARALLAX CONFIG:", e);
-}
-
-var resources = {
-  bg: {
-    type: 'image',
-    url: 'bg.png'
-  },
-  jumper: {
-    type: 'image',
-    url: 'jumper.png'
-  },
-  platform: {
-    type: 'image',
-    url: 'platform.png'
-  },
-
-  flapping_bee: {
-    type: 'sprite',
-    url: 'bees/yellow/yellowBee'
-  },
-  flat_forest: {
-    type: 'image',
-    url: 'flat_forest.png'
-  },
-  foreground: {
-    type: 'image',
-    url: 'foreground.png'
-  },
-  log: {
-    type: 'image',
-    url: 'log.png'
-  },
-  hdrop: {
-    type: 'image',
-    url: 'hdrop.png'
-  },
-
-  spaceship: {
-    type: 'sprite',
-    defaultAnimation: 'fly',
-    url: 'swarm/player'
-  },
-
-  // themes
-  candy_theme: {
-    type: 'parallax',
-    config: candyConfig
-  },
-  forest_theme: {
-    type: 'parallax',
-    config: forestConfig
-  },
-  roman_theme: {
-    type: 'parallax',
-    config: romanConfig
-  },
-  shore_theme: {
-    type: 'parallax',
-    config: shoreConfig
-  },
-  medieval_theme: {
-    type: 'parallax',
-    config: medievalConfig
-  },
-  hideout_theme: {
-    type: 'parallax',
-    config: hideoutConfig
-  },
-  ocean_theme: {
-    type: 'parallax',
-    config: oceanConfig
-  }
-};
-
-// return the width of an image asset
+/** return the width of an image asset */
 var getImageWidth = function(url) {
     var map = resourceMap[url];
     var width = 0;
@@ -108,7 +13,7 @@ var getImageWidth = function(url) {
     return width;
 };
 
-// return the height of an image asset
+/** return the height of an image asset */
 var getImageHeight = function(url) {
     var map = resourceMap[url];
     var height = 0;
@@ -118,48 +23,297 @@ var getImageHeight = function(url) {
     return height;
 };
 
-exports = function(uuid) {
-  if (!(uuid in resources)) {
-    // var req = new XMLHttpRequest();
-    // req.open('get', COMMUNITY_ART_PORTAL + uuid, false);
-    // req.send();
-    // resources[uuid] = JSON.parse(req.responseText);
-    resources[uuid] = {
-      type: 'image',
-      url: uuid + '.png'
-    };
+var _caConfig = null;
+var _caManifest = null;
+var _jsCache = null;
+var _resources = null;
+
+var _init = function() {
+  // Load the communityartManifest.json
+  var caManifestPath = 'resources/communityart/communityartManifest.json';
+
+  _jsCache = {};
+  _resources = {};
+  console.log('==== ==== CommunityArt ==== ====');
+
+  _loadFromManifest();
+  _loadFromConfig();
+};
+
+var _loadFromManifest = function() {
+  if (!CONFIG.modules || !CONFIG.modules.communityart) {
+    console.log('CommunityArt: No communityart in CONFIG.modules ... is it in your manifest?');
+    return;
   }
 
-  var resObj = resources[uuid];
-  if (resObj.type === 'parallax') {
-    var resUrl = THEME_PREFIX + uuid + '/';
-    return {
-      type: resObj.type,
-      config: resObj.config,
-      url: resUrl
-    };
-  } else {
-    var resUrl = LOCAL_PREFIX + resObj.url;
-    return {
-      type: resObj.type,
-      url: resUrl,
-      w: getImageWidth(resUrl),
-      h: getImageHeight(resUrl)
-    };
+  _caConfig = CONFIG.modules.communityart;
+  _caManifest = JSON.parse(CACHE[caManifestPath]);
+  var missingKeys = [];
+
+  // Try to import all of the requested keys
+  for (var key in _caManifest) {
+    console.log('CommunityArt: trying to load:', key);
+    var keyData = _caManifest[key];
+
+    // Is this key valid?
+    if (!keyData) {
+      console.warn('> Skipping key, keyData missing');
+    } else if (!keyData.url) {
+      console.warn('> Skipping key, keyData not valid');
+    } else {
+      // Try to import it and add the imported results to the _resources
+      if (keyData.ext === '.js') {
+        try {
+          _resources[key] = jsio('import src.communityart.' + key.replace('/', '.'));
+          // var srcLocation = 'resources/communityart/' + key + '.js';
+          // _resources[key] = eval(CACHE[srcLocation])[0];
+          continue;
+        } catch (e) {
+          console.error('> Could not import config object', e);
+          missingKeys.push(key);
+        }
+      } else {
+        var resObj = {
+              artType: 'ImageView',
+              url: key + keyData.ext,
+              opts: {}
+            };
+        _resources[key] = resObj;
+
+        // Add the proper path to the key urls
+        if (resObj.url.indexOf('http') !== 0) {
+          resObj.url = 'resources/communityart/' + _resources[key].url;
+
+          // Default sizes
+          resObj.w = resObj.w || getImageWidth(resObj.url);
+          resObj.h = resObj.h || getImageHeight(resObj.url);
+        }
+      }
+    }
+  }
+
+  if (missingKeys.length) {
+    resolveKeys(missingKeys);
   }
 };
 
-exports.getUrl = function(id, name) {
-  return 'https://s3-us-west-2.amazonaws.com/weeby-community-art/' + id + '/' + name + '.png';
-};
+var _loadFromConfig = function() {
+  try {
+    jsio('import src.communityartConfig');
+  } catch (e) {
+    console.log('CommunityArt: no default config could be imported');
+  }
+}
 
-exports.preload = function(array) {
-  for (var i = 0; i < array.length; i++) {
-    var url = exports.getUrl(array[i][0], array[i][1]);
-    var img = new Image(url);
-    img.addEventListener('load', function() {
-      debugger
+/** Takes an array of keys, tries to figure out what they should be and adds
+    them to _resources */
+var resolveKeys = function(array, cb) {
+  console.log('Resolving keys:', array);
+  for (var i = array.length - 1; i >= 0; i--) {
+    // check if key is in local _resources
+    var key = array[i];
+    if (_resources[key]) {
+      console.log('> Found key in _resources');
+      array.splice(i, 1);
+    }
+  }
+
+  // batch request to nimbus to resolve the missing keys
+  var nimbusUrl = _caConfig.server || 'http://js.io/';
+  var configRequestCount = 0;
+  var completeConfigRequests = 0;
+  ajax.post({
+      url: nimbusUrl + 'api/v1/art/resolve/',
+      data: {
+        userID: _caConfig.userID,
+        keys: array
+      }
+    }, function(error, res, headers) {
+      if (error) {
+        console.error('error in nimbus communityart resolve request ajax:', error);
+        return;
+      }
+
+      // add the result of batch request to the manifest
+      for (var key in res.keyMap) {
+        var keyResult = res.keyMap[key];
+        if (keyResult.error) {
+          console.error('error in resolution:', key, keyResult);
+          continue;
+        }
+        _caManifest[key] = keyResult;
+
+        // We also need to request and load the configuration
+        configRequestCount++;
+        var artUrl = keyResult.url;
+        var jsUrl = artUrl.substring(0, artUrl.lastIndexOf('.')) + '.js';
+        ajax.get({
+            url: jsUrl
+          },
+          function(error, res, headers) {
+            if (error) {
+              console.error('error in art config ajax request:', error);
+              return;
+            }
+
+            _jsCache[key] = res;
+            try {
+              _resources[key] = eval(res);
+            } catch (e) {
+              console.error('CommunityArt: Error during runtime eval:', key, e);
+            }
+
+            completeConfigRequests++;
+            if (completeConfigRequests >= configRequestCount) {
+              console.log('CommunityArt: Loading complete!');
+              // debugger
+              cb && cb();
+            }
+          });
+      }
     });
-    img.src = url;
+};
+
+var getTypeFromResource = function(type, resource) {
+  if (Array.isArray(resource)) {
+    for (var i = 0; i < resource.length; ++i) {
+      var res = getTypeFromResource(type, resource[i]);
+      if (res) {
+        return res;
+      }
+    }
+    return null;
+  }
+
+  // Verify the resource type matches
+  if (resource.type === type) {
+    return resource;
+  }
+  return null;
+};
+
+// TODO some sort of preloading for remote images?
+
+/**
+  * @class communityart
+  * @arg {string} key
+  * @arg {string} [type]
+  * @returns {Object} artData
+  */
+exports = function(key, type) {
+  // Determine if the key is a key or a local url
+  if (typeof key === 'string' && key.indexOf('resources/') === 0) {
+    // If it is a local url, return a default opts object
+    return {
+      url: key
+    };
+  }
+
+  // If it is a key, return either the specified type, or the defualt if no type was specified
+  var resObj;
+  if (key in _resources) {
+    resObj = _resources[key];
+  } else {
+    // TODO: cache a default object in _resources
+    resObj = {
+      artType: 'ImageView',
+      opts: {
+        url: key + '.png'
+      }
+    };
+  }
+
+  // Check for a requested type
+  var requestedTypeResource;
+  if (type) {
+    requestedTypeResource = getTypeFromResource(type, resObj);
+  }
+  // either the type is not defined, or we could not find that type
+  if (!type || !requestedTypeResource) {
+    if (Array.isArray(resObj)) {
+      requestedTypeResource = resObj[0];
+    } else {
+      requestedTypeResource = resObj;
+    }
+  }
+
+  // return
+  return requestedTypeResource.opts;
+};
+
+/**
+  * Easy to use, easy to abuse. Pass either a key, or an object. Strings will be
+  * looked up using `communityart(key)`, other types of keys will just be returned.
+  * @function communityart.getResource
+  * @arg {String|Object} key
+  * @arg {String}        [type]
+  * @returns {Object}    opts
+  */
+exports.getResource = function(key, type) {
+  if (typeof key === 'string') {
+    return exports(key, type);
+  }
+  return key;
+};
+
+/**
+  * @function communityart.create
+  * @arg {string} key
+  * @arg {string} [type]
+  * @returns {View} newView
+  */
+exports.create = function(key, type) {
+  throw new Error('TODO: implement');
+};
+
+/**
+ * @typedef {function} CaHandlerFunction
+ * @arg {string} key
+ * @arg {CaInfo} info
+ * @arg {Object} opts
+ * @returns {View} newView
+ */
+
+/**
+ * @typedef {Object} CaInfo
+ * @property {string} type - The type of handler that this opts expects
+ * @property {Object} opts - Opts to be passed to the creation handler
+ */
+
+/**
+  * @function communityart.registerHandler
+  * @arg {string} type
+  * @arg {CaHandlerFunction} handlerFn
+  * @returns {View} newView
+  */
+exports.registerHandler = function(key, type) {
+  throw new Error('TODO: implement');
+};
+
+/**
+  * @function communityart.registerConfig
+  * @arg {string} key
+  * @arg {CaInfo|CaInfo[]} config
+  */
+exports.registerConfig = function(key, config) {
+  console.log('CommunityArt: registering config for', key);
+  if (key in _resources) {
+    // already exists, add to the existing key
+    if (Array.isArray(config)) {
+      _resources[key] = _resources[key].concat(config);
+    } else {
+      _resources[key].push(config);
+    }
+  } else {
+    // doesn't already exist, just set
+    if (!Array.isArray(config)) {
+      config = [config];
+    }
+    _resources[key] = config;
   }
 };
+
+// To avoid circular imports... we still want to run initilization, but we want the
+// existing exports to be available.
+GC.communityart = exports;
+_init();

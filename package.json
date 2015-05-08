@@ -4,7 +4,10 @@
   "description": "Let the people provide art, so we can use it without attribution.",
   "version": "0.1.1",
   "repository": {},
-  "dependencies": { },
+  "dependencies": {
+    "download": "^4.1.2",
+    "request": "^2.55.0"
+  },
   "scripts": {},
   "devkit": {
     "buildTargets": {},
