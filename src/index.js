@@ -36,8 +36,13 @@ var _init = function() {
   _resources = {};
   console.log('==== ==== CommunityArt ==== ====');
 
+  _loadDefaults();
   _loadFromManifest();
   _loadFromConfig();
+};
+
+var _loadDefaults = function() {
+  jsio('import communityart.defaultConfig');
 };
 
 var _loadFromManifest = function() {
