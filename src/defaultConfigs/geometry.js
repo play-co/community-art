@@ -3,6 +3,7 @@ var communityart = GC.communityart;
 var PREFIX = 'addons/community-art/images_ca/geometry/';
 
 var BULLET_SIZE = { w: 20, h: 32 };
+var PLAYER_SIZE = 64;
 var ENEMY_SIZE = 64;
 
 communityart.registerConfig('geom/bg', {
@@ -23,11 +24,13 @@ communityart.registerConfig('geom/player', {
   type: 'default',
   opts: {
     url: PREFIX + 'playerTriangle.png',
-    anchorX: 32,
-    anchorY: 32,
-    offsetX: -32,
-    offsetY: -32,
-    hitBounds: { radius: 32 },
+    width: PLAYER_SIZE,
+    height: PLAYER_SIZE,
+    anchorX: PLAYER_SIZE / 2,
+    anchorY: PLAYER_SIZE / 2,
+    offsetX: PLAYER_SIZE / -2,
+    offsetY: PLAYER_SIZE / -2,
+    hitBounds: { radius: PLAYER_SIZE / 2 },
     compositeOperation: 'lighter'
   }
 });
@@ -73,6 +76,13 @@ communityart.registerConfig('geom/enemy_2', {
     offsetX: ENEMY_SIZE / -2,
     offsetY: ENEMY_SIZE / -2,
     hitBounds: { radius: ENEMY_SIZE / 2 },
+    satBounds: {
+      verticies: [
+        { x: 32, y: 14 },
+        { x: 54, y: 45 },
+        { x: 11, y: 45 }
+      ]
+    },
     compositeOperation: 'lighter'
   }
 });
