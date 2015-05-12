@@ -23,7 +23,10 @@ communityart.registerConfig('flappybee/log', {
     url: PREFIX + 'themes/forest_theme/wall__1.png',
     width: LOG_SIZE.w,
     height: LOG_SIZE.h,
-    hitBounds: { width: LOG_SIZE.w, height: LOG_SIZE.h }
+    hitBounds: {
+      offsetX: 2, offsetY: 25,
+      width: LOG_SIZE.w - 12, height: LOG_SIZE.h - 50
+    }
   }
 });
 
