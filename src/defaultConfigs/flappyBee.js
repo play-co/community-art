@@ -5,6 +5,7 @@ var PREFIX = communityart.IMAGE_PREFIX + 'flappybee/';
 var PLAYER_SIZE = { w: 80, h: 75 };
 var LOG_SIZE = { w: 125, h: 1024 };
 var HONEY_SIZE = 69;
+var POWERUP_SIZE = 90;
 
 communityart.registerConfig('flappybee/instructions', {
   type: 'ImageView',
@@ -62,6 +63,28 @@ communityart.registerConfig('flappybee/scoreText', {
     offsetY: -34
   }
 });
+
+// ---- POWERUPS ---- //
+
+var powerupTypes = ['grow', 'mag', 'wand'];
+
+for (var i = 0; i < powerupTypes.length; i++) {
+  var powerupType = powerupTypes[i];
+
+  communityart.registerConfig('flappybee/powerup/' + powerupType, {
+    type: 'default',
+    config: {
+      url: PREFIX + 'powerup_' + powerupType + '.png',
+      width: POWERUP_SIZE,
+      height: POWERUP_SIZE,
+      anchorX: POWERUP_SIZE / 2,
+      anchorY: POWERUP_SIZE / 2,
+      offsetX: POWERUP_SIZE / -2,
+      offsetY: POWERUP_SIZE / -2,
+      hitBounds: { radius: POWERUP_SIZE / 2 }
+    }
+  });
+}
 
 // ---- BEES ---- //
 
