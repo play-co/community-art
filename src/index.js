@@ -207,8 +207,25 @@ var getTypeFromResource = function(type, resource) {
   * @returns {Object} artData
   */
 exports = function(key, type) {
+  return exports.getConfig(key, type);
+};
+
+/**
+  * Easy to use, easy to abuse. Pass either a key, or an object. Strings will be
+  * looked up using `communityart(key)`, other types of keys will just be returned.
+  * @function communityart.getResource
+  * @arg {String|Object} key
+  * @arg {String}        [type]
+  * @returns {Object}    opts
+  */
+exports.getResource = function(key, type) {
+  // nope
+  if (typeof key !== 'string') {
+    throw new Error('can only look up string keys');
+  }
+
   // Determine if the key is a key or a local url
-  if (typeof key === 'string' && key.indexOf('resources/') === 0) {
+  if (key.indexOf('resources/') === 0) {
     // If it is a local url, return a default opts object
     return {
       url: key
@@ -222,8 +239,8 @@ exports = function(key, type) {
   } else {
     // TODO: cache a default object in _resources
     resObj = {
-      artType: 'ImageView',
-      opts: {
+      type: 'ImageView',
+      config: {
         url: key + '.png'
       }
     };
@@ -243,21 +260,16 @@ exports = function(key, type) {
     }
   }
 
-  // return
-  return requestedTypeResource.opts;
+  return requestedTypeResource;
 };
 
-/**
-  * Easy to use, easy to abuse. Pass either a key, or an object. Strings will be
-  * looked up using `communityart(key)`, other types of keys will just be returned.
-  * @function communityart.getResource
-  * @arg {String|Object} key
-  * @arg {String}        [type]
-  * @returns {Object}    opts
-  */
-exports.getResource = function(key, type) {
+exports.getConfig = function(key, type) {
   if (typeof key === 'string') {
-    return exports(key, type);
+    var res = exports.getResource(key, type);
+    if (res) {
+      return res.config;
+    }
+    return null;
   }
   return key;
 };
