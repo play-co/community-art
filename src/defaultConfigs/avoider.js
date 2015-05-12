@@ -1,6 +1,6 @@
 var communityart = GC.communityart;
 
-var PREFIX = 'addons/community-art/images_ca/avoider/';
+var PREFIX = communityart.IMAGE_PREFIX + 'avoider/';
 
 var PLAYER_SIZE = { w: 64, h: 92 };
 var ENEMY_SIZE = { w: 50, h: 56 };

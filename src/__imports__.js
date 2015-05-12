@@ -20,6 +20,7 @@ exports.resolve = function (env, opts) {
       }
     }
   }
+
   // Check for a "communityartConfig.js", import by default
   if (fs.existsSync(path.join(srcPath, 'communityartConfig.js'))) {
     imports.push('src.communityartConfig');

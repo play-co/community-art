@@ -1,6 +1,6 @@
 var communityart = GC.communityart;
 
-var PREFIX = 'addons/community-art/images_ca/runner/';
+var PREFIX = communityart.IMAGE_PREFIX + 'runner/';
 
 var PLAYER_SIZE = 100;
 var PLATFORM_SIZE = { w: 768, h: 228 };

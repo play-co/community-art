@@ -1,6 +1,6 @@
 var communityart = GC.communityart;
 
-var PREFIX = 'addons/community-art/images_ca/swarm/';
+var PREFIX = communityart.IMAGE_PREFIX + 'swarm/';
 
 var PLAYER_SIZE = 96;
 var ENEMY_0_SIZE = { w: 36, h: 168 };

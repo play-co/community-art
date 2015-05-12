@@ -1,6 +1,6 @@
 var communityart = GC.communityart;
 
-var PREFIX = 'addons/community-art/images_ca/abduction/';
+var PREFIX = communityart.IMAGE_PREFIX + 'abduction/';
 
 var PLAYER_SIZE = 130;
 var PLATFORM_SIZE = { w: 145, h: 62 };

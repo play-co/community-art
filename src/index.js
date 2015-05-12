@@ -104,7 +104,8 @@ var _loadFromManifest = function() {
 
 var _loadFromConfig = function() {
   try {
-    jsio('import src.communityartConfig');
+    var s = 'import src.communityartConfig';
+    jsio(s);
   } catch (e) {
     console.log('CommunityArt: no default config could be imported');
   }
@@ -317,6 +318,8 @@ exports.registerConfig = function(key, config) {
     _resources[key] = config;
   }
 };
+
+exports.IMAGE_PREFIX = 'plugins/community-art/images_ca/';
 
 // To avoid circular imports... we still want to run initilization, but we want the
 // existing exports to be available.

@@ -1,6 +1,6 @@
 var communityart = GC.communityart;
 
-var PREFIX = 'addons/community-art/images_ca/geometry/';
+var PREFIX = communityart.IMAGE_PREFIX + 'geometry/';
 
 var BULLET_SIZE = { w: 20, h: 32 };
 var PLAYER_SIZE = 64;
