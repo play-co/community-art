@@ -267,7 +267,7 @@ exports.getConfig = function(key, type) {
   if (typeof key === 'string') {
     var res = exports.getResource(key, type);
     if (res) {
-      return res.config;
+      return res.config || res.opts;
     }
     return null;
   }

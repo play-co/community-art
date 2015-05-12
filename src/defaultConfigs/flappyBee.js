@@ -6,6 +6,17 @@ var PLAYER_SIZE = { w: 80, h: 75 };
 var LOG_SIZE = { w: 125, h: 1024 };
 var HONEY_SIZE = 69;
 
+communityart.registerConfig('flappybee/instructions', {
+  type: 'ImageView',
+  config: {
+    url: PREFIX + 'instructions.png',
+    anchorX: 500 / 2,
+    anchorY: 500 / 2,
+    offsetX: 500 / -2,
+    offsetY: 500 / -2,
+  }
+});
+
 communityart.registerConfig('flappybee/log', {
   type: 'ImageView',
   config: {
@@ -27,6 +38,25 @@ communityart.registerConfig('flappybee/honeyDrop', {
     offsetX: HONEY_SIZE / -2,
     offsetY: HONEY_SIZE / -2,
     hitBounds: { radius: HONEY_SIZE / 3 }
+  }
+});
+
+// ---- TEXT ---- //
+
+var scoreTextData = { '/': { image: PREFIX + 'numbers/num_slash.png' } };
+for (var i = 0; i < 10; i++) {
+  scoreTextData[i] = { image: PREFIX + 'numbers/num_' + i + '.png' };
+}
+communityart.registerConfig('flappybee/scoreText', {
+  type: 'ScoreView',
+  opts: {
+    characterData: scoreTextData,
+    width: 300,
+    height: 68,
+    anchorX: 150,
+    anchorY: 34,
+    offsetX: -150,
+    offsetY: -34
   }
 });
 
