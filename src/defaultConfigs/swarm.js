@@ -20,33 +20,37 @@ communityart.registerConfig('swarm/bg', {
 communityart.registerConfig('swarm/spaceship', {
   type: 'default',
   opts: {
-    url: PREFIX + 'player',
-    defaultAnimation: 'fly',
-    autoStart: true,
-    loop: true,
-    width: PLAYER_SIZE,
-    height: PLAYER_SIZE,
-    anchorX: PLAYER_SIZE / 2,
-    anchorY: PLAYER_SIZE / 2,
-    offsetX: PLAYER_SIZE / -2,
-    offsetY: PLAYER_SIZE / -2,
-    hitBounds: { radius: PLAYER_SIZE / 3 }
+    hitOpts: {
+      radius: PLAYER_SIZE / 3
+    },
+    viewOpts: {
+      url: PREFIX + 'player',
+      defaultAnimation: 'fly',
+      autoStart: true,
+      loop: true,
+      offsetX: -PLAYER_SIZE / 2,
+      offsetY: -PLAYER_SIZE / 2,
+      width: PLAYER_SIZE,
+      height: PLAYER_SIZE
+    }
   }
 });
 
 communityart.registerConfig('swarm/enemy_type0', {
   type: 'default',
   opts: {
-    url: PREFIX + 'enemy_type0.png',
-    width: ENEMY_0_SIZE.w,
-    height: ENEMY_0_SIZE.h,
-    anchorX: ENEMY_0_SIZE.w / 2,
-    anchorY: ENEMY_0_SIZE.h / 2,
-    offsetX: ENEMY_0_SIZE.w / -2,
-    offsetY: ENEMY_0_SIZE.h / -2,
-    hitBounds: {
-      offsetX: ENEMY_0_SIZE.w / -2, offsetY: ENEMY_0_SIZE.h / -2,
-      width: ENEMY_0_SIZE.w, height: ENEMY_0_SIZE.h
+    hitOpts: {
+      offsetX: -ENEMY_0_SIZE.w / 2,
+      offsetY: -ENEMY_0_SIZE.h / 2,
+      width: ENEMY_0_SIZE.w,
+      height: ENEMY_0_SIZE.h
+    },
+    viewOpts: {
+      url: PREFIX + 'enemy_type0.png',
+      offsetX: -ENEMY_0_SIZE.w / 2,
+      offsetY: -ENEMY_0_SIZE.h / 2,
+      width: ENEMY_0_SIZE.w,
+      height: ENEMY_0_SIZE.h
     }
   }
 });
@@ -54,69 +58,81 @@ communityart.registerConfig('swarm/enemy_type0', {
 communityart.registerConfig('swarm/enemy_type1', {
   type: 'default',
   opts: {
-    url: PREFIX + 'enemy_type1.png',
-    width: ENEMY_1_SIZE,
-    height: ENEMY_1_SIZE,
-    anchorX: ENEMY_1_SIZE / 2,
-    anchorY: ENEMY_1_SIZE / 2,
-    offsetX: ENEMY_1_SIZE / -2,
-    offsetY: ENEMY_1_SIZE / -2,
-    hitBounds: { radius: ENEMY_1_SIZE / 2.5 }
+    hitOpts: {
+      radius: ENEMY_1_SIZE / 2.5
+    },
+    viewOpts: {
+      url: PREFIX + 'enemy_type1.png',
+      offsetX: -ENEMY_1_SIZE / 2,
+      offsetY: -ENEMY_1_SIZE / 2,
+      width: ENEMY_1_SIZE,
+      height: ENEMY_1_SIZE
+    }
   }
 });
 
 communityart.registerConfig('swarm/enemy_type2', {
   type: 'default',
   opts: {
-    url: PREFIX + 'enemy_type2.png',
-    width: ENEMY_2_SIZE,
-    height: ENEMY_2_SIZE,
-    anchorX: ENEMY_2_SIZE / 2,
-    anchorY: ENEMY_2_SIZE / 2,
-    offsetX: ENEMY_2_SIZE / -2,
-    offsetY: ENEMY_2_SIZE / -2,
-    hitBounds: { radius: ENEMY_2_SIZE / 3 }
+    hitOpts: {
+      radius: ENEMY_2_SIZE / 3
+    },
+    viewOpts: {
+      url: PREFIX + 'enemy_type2.png',
+      offsetX: -ENEMY_2_SIZE / 2,
+      offsetY: -ENEMY_2_SIZE / 2,
+      width: ENEMY_2_SIZE,
+      height: ENEMY_2_SIZE
+    }
   }
 });
 
 communityart.registerConfig('swarm/laser', {
   type: 'default',
   opts: {
-    url: PREFIX + 'laser.png',
-    width: LASER_SIZE,
-    height: LASER_SIZE * 2.5,
-    anchorX: LASER_SIZE,
-    anchorY: LASER_SIZE * 2.5 / 2,
-    offsetX: LASER_SIZE / -2,
-    offsetY: LASER_SIZE * 2.5 / -2,
-    hitBounds: { radius: LASER_SIZE / 2 }
+    hitOpts: {
+      radius: LASER_SIZE / 2
+    },
+    viewOpts: {
+      url: PREFIX + 'laser.png',
+      offsetX: -LASER_SIZE / 2,
+      offsetY: -LASER_SIZE * 2.5 / 2,
+      anchorX: LASER_SIZE,
+      anchorY: LASER_SIZE * 2.5 / 2,
+      width: LASER_SIZE,
+      height: LASER_SIZE * 2.5
+    }
   }
 });
 
 communityart.registerConfig('swarm/enemy_boss', {
   type: 'default',
   opts: {
-    url: PREFIX + 'enemy_boss.png',
-    width: BOSS_SIZE,
-    height: BOSS_SIZE,
-    anchorX: BOSS_SIZE / 2,
-    anchorY: BOSS_SIZE / 2,
-    offsetX: BOSS_SIZE / -2,
-    offsetY: BOSS_SIZE / -2,
-    hitBounds: { radius: BOSS_SIZE / 2.2 }
+    hitOpts: {
+      radius: BOSS_SIZE / 2.2
+    },
+    viewOpts: {
+      url: PREFIX + 'enemy_boss.png',
+      offsetX: -BOSS_SIZE / 2,
+      offsetY: -BOSS_SIZE / 2,
+      width: BOSS_SIZE,
+      height: BOSS_SIZE
+    }
   }
 });
 
 communityart.registerConfig('swarm/particleCircle', {
   type: 'default',
   opts: {
-    url: PREFIX + 'particleCircle.png',
-    width: BOSS_LASER_SIZE,
-    height: BOSS_LASER_SIZE,
-    anchorX: BOSS_LASER_SIZE / 2,
-    anchorY: BOSS_LASER_SIZE / 2,
-    offsetX: BOSS_LASER_SIZE / -2,
-    offsetY: BOSS_LASER_SIZE / -2,
-    hitBounds: { radius: BOSS_LASER_SIZE / 2.5 }
+    hitOpts: {
+      radius: BOSS_LASER_SIZE / 2.5
+    },
+    viewOpts: {
+      url: PREFIX + 'particleCircle.png',
+      offsetX: -BOSS_LASER_SIZE / 2,
+      offsetY: -BOSS_LASER_SIZE / 2,
+      width: BOSS_LASER_SIZE,
+      height: BOSS_LASER_SIZE
+    }
   }
 });
