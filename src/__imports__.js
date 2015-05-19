@@ -4,7 +4,12 @@ var path = require('path');
 exports.resolve = function (env, opts) {
   var manifestPath = opts.rawOpts.gcManifest;
   var srcPath = path.join(opts.rawOpts.cwd, 'src');
-  var manifest = require(manifestPath);
+  try {
+    var manifest = require(manifestPath);
+  } catch (e) {
+    console.warn('Not able to import manifestPath:', manifestPath);
+    return;
+  }
 
   var imports = [];
 
