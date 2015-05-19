@@ -19,29 +19,33 @@ communityart.registerConfig('flappybee/instructions', {
 });
 
 communityart.registerConfig('flappybee/log', {
-  type: 'ImageView',
+  type: 'Entity',
   config: {
     url: PREFIX + 'themes/forest_theme/wall__1.png',
     width: LOG_SIZE.w,
     height: LOG_SIZE.h,
-    hitBounds: {
-      offsetX: 2, offsetY: 25,
-      width: LOG_SIZE.w - 12, height: LOG_SIZE.h - 50
+    hitOpts: {
+      offsetX: 2,
+      offsetY: 25,
+      width: LOG_SIZE.w - 12,
+      height: LOG_SIZE.h - 50
     }
   }
 });
 
 communityart.registerConfig('flappybee/honeyDrop', {
-  type: 'default',
+  type: 'Entity',
   config: {
-    url: PREFIX + 'hdrop.png',
     width: HONEY_SIZE,
     height: HONEY_SIZE,
-    anchorX: HONEY_SIZE / 2,
-    anchorY: HONEY_SIZE / 2,
-    offsetX: HONEY_SIZE / -2,
-    offsetY: HONEY_SIZE / -2,
-    hitBounds: { radius: HONEY_SIZE / 3 }
+    hitOpts: {
+      radius: HONEY_SIZE / 3
+    },
+    viewOpts: {
+      url: PREFIX + 'hdrop.png',
+      offsetX: HONEY_SIZE / -2,
+      offsetY: HONEY_SIZE / -2,
+    }
   }
 });
 
@@ -72,16 +76,18 @@ for (var i = 0; i < powerupTypes.length; i++) {
   var powerupType = powerupTypes[i];
 
   communityart.registerConfig('flappybee/powerup/' + powerupType, {
-    type: 'default',
+    type: 'Entity',
     config: {
-      url: PREFIX + 'powerup_' + powerupType + '.png',
       width: POWERUP_SIZE,
       height: POWERUP_SIZE,
-      anchorX: POWERUP_SIZE / 2,
-      anchorY: POWERUP_SIZE / 2,
-      offsetX: POWERUP_SIZE / -2,
-      offsetY: POWERUP_SIZE / -2,
-      hitBounds: { radius: POWERUP_SIZE / 2 }
+      hitOpts: {
+        radius: POWERUP_SIZE / 2
+      },
+      viewOpts: {
+        url: PREFIX + 'powerup_' + powerupType + '.png',
+        offsetX: POWERUP_SIZE / -2,
+        offsetY: POWERUP_SIZE / -2
+      }
     }
   });
 }
@@ -94,20 +100,21 @@ for (var i = 0; i < beeTypes.length; i++) {
   var beeType = beeTypes[i];
 
   communityart.registerConfig('flappybee/bee/' + beeType, {
-    type: 'default',
+    type: 'Entity',
     config: {
-      url: PREFIX + 'bees/' + beeType + '/' + beeType + 'Bee',
-      defaultAnimation: 'flap',
-      autoStart: true,
-      loop: true,
-
       width: PLAYER_SIZE.w,
       height: PLAYER_SIZE.h,
-      anchorX: PLAYER_SIZE.w / 2,
-      anchorY: PLAYER_SIZE.h / 2,
-      offsetX: PLAYER_SIZE.w / -2,
-      offsetY: PLAYER_SIZE.h / -2,
-      hitBounds: { radius: PLAYER_SIZE.w / 2.2 }
+      hitOpts: {
+        radius: PLAYER_SIZE.w / 2.2
+      },
+      viewOpts: {
+        url: PREFIX + 'bees/' + beeType + '/' + beeType + 'Bee',
+        defaultAnimation: 'flap',
+        autoStart: true,
+        loop: true,
+        offsetX: PLAYER_SIZE.w / -2,
+        offsetY: PLAYER_SIZE.h / -2
+      }
     }
   });
 }
