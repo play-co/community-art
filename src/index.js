@@ -331,7 +331,7 @@ exports.registerConfig = function(key, config) {
   }
 };
 
-exports.IMAGE_PREFIX = 'plugins/community-art/images_ca/';
+exports.IMAGE_PREFIX = 'modules/community-art/images_ca/';
 
 // To avoid circular imports... we still want to run initilization, but we want the
 // existing exports to be available.
