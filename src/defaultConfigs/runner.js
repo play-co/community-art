@@ -8,6 +8,8 @@ var PLATFORM_SIZE = { w: 768, h: 228 };
 communityart.registerConfig('runner/bg', {
   type: 'ImageView',
   opts: {
+    width: 768,
+    height: 1024,
     url: PREFIX + 'backgroundSky.png'
   }
 });
