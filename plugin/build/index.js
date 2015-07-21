@@ -1,9 +1,6 @@
 var path = require('path');
 var fs = require('fs');
 
-var request = require('request');
-var Download = require('download');
-
 var CA_DIR_NAME = 'communityart';
 var NIMBUS_URL = 'http://js.io/';
 
@@ -63,6 +60,9 @@ exports.onBeforeBuild = function (devkitAPI, app, config, cb) {
 
     // Were there any missing keys? If so download
     if (missingKeys.length > 0) {
+      var request = require('request');
+      var Download = require('download');
+
       request({
           uri: nimbusUrl + 'api/v1/art/resolve/',
           method: 'POST',
