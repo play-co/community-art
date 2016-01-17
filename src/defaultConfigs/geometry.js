@@ -1,26 +1,25 @@
 var communityart = GC.communityart;
-
 var PREFIX = communityart.IMAGE_PREFIX + 'geometry/';
 
 var BULLET_SIZE = { w: 20, h: 32 };
 var PLAYER_SIZE = 64;
 var ENEMY_SIZE = 64;
 
-communityart.registerConfig('geom/bg', {
+scene.registerConfig('geom/bg', {
   type: 'ImageView',
   opts: {
     url: PREFIX + 'bg_backdrop.png'
   }
 });
 
-communityart.registerConfig('geom/bg2', {
+scene.registerConfig('geom/bg2', {
   type: 'ImageView',
   opts: {
     url: PREFIX + 'bg_midground.png'
   }
 });
 
-communityart.registerConfig('geom/player', {
+scene.registerConfig('geom/player', {
   type: 'default',
   opts: {
     url: PREFIX + 'playerTriangle.png',
@@ -35,7 +34,7 @@ communityart.registerConfig('geom/player', {
   }
 });
 
-communityart.registerConfig('geom/enemy_0', {
+scene.registerConfig('geom/enemy_0', {
   type: 'default',
   opts: {
     url: PREFIX + 'enemyCircle.png',
@@ -50,7 +49,7 @@ communityart.registerConfig('geom/enemy_0', {
   }
 });
 
-communityart.registerConfig('geom/enemy_1', {
+scene.registerConfig('geom/enemy_1', {
   type: 'default',
   opts: {
     url: PREFIX + 'enemyPentagon.png',
@@ -65,7 +64,7 @@ communityart.registerConfig('geom/enemy_1', {
   }
 });
 
-communityart.registerConfig('geom/enemy_2', {
+scene.registerConfig('geom/enemy_2', {
   type: 'default',
   opts: {
     url: PREFIX + 'enemyTriangle.png',
@@ -87,7 +86,7 @@ communityart.registerConfig('geom/enemy_2', {
   }
 });
 
-communityart.registerConfig('geom/laser', {
+scene.registerConfig('geom/laser', {
   type: 'default',
   opts: {
     url: PREFIX + 'laser.png',
@@ -102,7 +101,7 @@ communityart.registerConfig('geom/laser', {
   }
 });
 
-communityart.registerConfig('geom/shieldUI', {
+scene.registerConfig('geom/shieldUI', {
   type: 'ImageView',
   opts: {
     url: PREFIX + 'shieldUi.png',
@@ -112,7 +111,7 @@ communityart.registerConfig('geom/shieldUI', {
   }
 });
 
-communityart.registerConfig('geom/smokeParticles', {
+scene.registerConfig('geom/smokeParticles', {
   type: 'Array',
   opts: [
     PREFIX + 'particles/smoke1.png',

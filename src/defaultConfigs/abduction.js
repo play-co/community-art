@@ -1,18 +1,17 @@
 var communityart = GC.communityart;
-
 var PREFIX = communityart.IMAGE_PREFIX + 'abduction/';
 
 var PLAYER_SIZE = 130;
 var PLATFORM_SIZE = { w: 145, h: 62 };
 
-communityart.registerConfig('abduction/bg', {
+scene.registerConfig('abduction/bg', {
   type: 'ImageView',
   opts: {
     url: PREFIX + 'background.png'
   }
 });
 
-communityart.registerConfig('abduction/platform', {
+scene.registerConfig('abduction/platform', {
   type: 'Entity',
   opts: {
     url: PREFIX + 'platform_01.png',
@@ -25,7 +24,7 @@ communityart.registerConfig('abduction/platform', {
   }
 });
 
-communityart.registerConfig('abduction/player', {
+scene.registerConfig('abduction/player', {
   type: 'Entity',
   opts: {
     hitOpts: {
@@ -44,7 +43,7 @@ communityart.registerConfig('abduction/player', {
   }
 });
 
-communityart.registerConfig('abduction/playerChicken', {
+scene.registerConfig('abduction/playerChicken', {
   type: 'Entity',
   opts: {
     url: PREFIX + 'chicken_normal.png'

@@ -1,20 +1,17 @@
 var communityart = GC.communityart;
-
 var PREFIX = communityart.IMAGE_PREFIX + 'runner/';
 
 var PLAYER_SIZE = 100;
 var PLATFORM_SIZE = { w: 768, h: 228 };
 
-communityart.registerConfig('runner/bg', {
+scene.registerConfig('runner/bg', {
   type: 'ImageView',
   opts: {
-    width: 768,
-    height: 1024,
     url: PREFIX + 'backgroundSky.png'
   }
 });
 
-communityart.registerConfig('runner/player', {
+scene.registerConfig('runner/player', {
   type: 'default',
   opts: {
     url: PREFIX + 'kiwiTeal',
@@ -31,7 +28,7 @@ communityart.registerConfig('runner/player', {
   }
 });
 
-communityart.registerConfig('runner/platform', {
+scene.registerConfig('runner/platform', {
   type: 'ImageView',
   opts: {
     url: PREFIX + 'platform768.png',

@@ -1,5 +1,4 @@
 var communityart = GC.communityart;
-
 var PREFIX = communityart.IMAGE_PREFIX + 'swarm/';
 
 var PLAYER_SIZE = 96;
@@ -10,14 +9,14 @@ var LASER_SIZE = 28;
 var BOSS_SIZE = 200;
 var BOSS_LASER_SIZE = 64;
 
-communityart.registerConfig('swarm/bg', {
+scene.registerConfig('swarm/bg', {
   type: 'ImageView',
   opts: {
     url: PREFIX + 'bg1.png'
   }
 });
 
-communityart.registerConfig('swarm/spaceship', {
+scene.registerConfig('swarm/spaceship', {
   type: 'default',
   opts: {
     hitOpts: {
@@ -36,7 +35,7 @@ communityart.registerConfig('swarm/spaceship', {
   }
 });
 
-communityart.registerConfig('swarm/enemy_type0', {
+scene.registerConfig('swarm/enemy_type0', {
   type: 'default',
   opts: {
     hitOpts: {
@@ -55,7 +54,7 @@ communityart.registerConfig('swarm/enemy_type0', {
   }
 });
 
-communityart.registerConfig('swarm/enemy_type1', {
+scene.registerConfig('swarm/enemy_type1', {
   type: 'default',
   opts: {
     hitOpts: {
@@ -71,7 +70,7 @@ communityart.registerConfig('swarm/enemy_type1', {
   }
 });
 
-communityart.registerConfig('swarm/enemy_type2', {
+scene.registerConfig('swarm/enemy_type2', {
   type: 'default',
   opts: {
     hitOpts: {
@@ -87,7 +86,7 @@ communityart.registerConfig('swarm/enemy_type2', {
   }
 });
 
-communityart.registerConfig('swarm/laser', {
+scene.registerConfig('swarm/laser', {
   type: 'default',
   opts: {
     hitOpts: {
@@ -105,7 +104,7 @@ communityart.registerConfig('swarm/laser', {
   }
 });
 
-communityart.registerConfig('swarm/enemy_boss', {
+scene.registerConfig('swarm/enemy_boss', {
   type: 'default',
   opts: {
     hitOpts: {
@@ -121,7 +120,7 @@ communityart.registerConfig('swarm/enemy_boss', {
   }
 });
 
-communityart.registerConfig('swarm/particleCircle', {
+scene.registerConfig('swarm/particleCircle', {
   type: 'default',
   opts: {
     hitOpts: {

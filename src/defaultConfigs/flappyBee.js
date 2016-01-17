@@ -1,5 +1,4 @@
 var communityart = GC.communityart;
-
 var PREFIX = communityart.IMAGE_PREFIX + 'flappybee/';
 
 var PLAYER_SIZE = { w: 80, h: 75 };
@@ -7,7 +6,7 @@ var LOG_SIZE = { w: 125, h: 1024 };
 var HONEY_SIZE = 69;
 var POWERUP_SIZE = 90;
 
-communityart.registerConfig('flappybee/instructions', {
+scene.registerConfig('flappybee/instructions', {
   type: 'ImageView',
   config: {
     url: PREFIX + 'instructions.png',
@@ -18,7 +17,7 @@ communityart.registerConfig('flappybee/instructions', {
   }
 });
 
-communityart.registerConfig('flappybee/log', {
+scene.registerConfig('flappybee/log', {
   type: 'Entity',
   config: {
     url: PREFIX + 'themes/forest_theme/wall__1.png',
@@ -33,7 +32,7 @@ communityart.registerConfig('flappybee/log', {
   }
 });
 
-communityart.registerConfig('flappybee/honeyDrop', {
+scene.registerConfig('flappybee/honeyDrop', {
   type: 'Entity',
   config: {
     width: HONEY_SIZE,
@@ -55,7 +54,7 @@ var scoreTextData = { '/': { image: PREFIX + 'numbers/num_slash.png' } };
 for (var i = 0; i < 10; i++) {
   scoreTextData[i] = { image: PREFIX + 'numbers/num_' + i + '.png' };
 }
-communityart.registerConfig('flappybee/scoreText', {
+scene.registerConfig('flappybee/scoreText', {
   type: 'ScoreView',
   opts: {
     characterData: scoreTextData,
@@ -75,7 +74,7 @@ var powerupTypes = ['grow', 'mag', 'wand'];
 for (var i = 0; i < powerupTypes.length; i++) {
   var powerupType = powerupTypes[i];
 
-  communityart.registerConfig('flappybee/powerup/' + powerupType, {
+  scene.registerConfig('flappybee/powerup/' + powerupType, {
     type: 'Entity',
     config: {
       width: POWERUP_SIZE,
@@ -99,7 +98,7 @@ var beeTypes = ['blue', 'green', 'orange', 'pink', 'purple', 'red', 'yellow'];
 for (var i = 0; i < beeTypes.length; i++) {
   var beeType = beeTypes[i];
 
-  communityart.registerConfig('flappybee/bee/' + beeType, {
+  scene.registerConfig('flappybee/bee/' + beeType, {
     type: 'Entity',
     config: {
       width: PLAYER_SIZE.w,
@@ -121,7 +120,7 @@ for (var i = 0; i < beeTypes.length; i++) {
 
 // ---- PARALLAX THEMES ---- //
 
-communityart.registerConfig('flappybee/parallax/forest', {
+scene.registerConfig('flappybee/parallax/forest', {
   type: 'ParallaxConfig',
   config: [
     {
@@ -207,7 +206,7 @@ communityart.registerConfig('flappybee/parallax/forest', {
   ]
 });
 
-communityart.registerConfig('flappybee/parallax/medieval', {
+scene.registerConfig('flappybee/parallax/medieval', {
   type: 'ParallaxConfig',
   config: [
     {
@@ -364,7 +363,7 @@ communityart.registerConfig('flappybee/parallax/medieval', {
   ]
 });
 
-communityart.registerConfig('flappybee/parallax/candy', {
+scene.registerConfig('flappybee/parallax/candy', {
   type: 'ParallaxConfig',
   config: [
     {
@@ -441,7 +440,7 @@ communityart.registerConfig('flappybee/parallax/candy', {
   ]
 });
 
-communityart.registerConfig('flappybee/parallax/hideout', {
+scene.registerConfig('flappybee/parallax/hideout', {
   type: 'ParallaxConfig',
   config:[
     {
@@ -541,7 +540,7 @@ communityart.registerConfig('flappybee/parallax/hideout', {
   ]
 });
 
-communityart.registerConfig('flappybee/parallax/ocean', {
+scene.registerConfig('flappybee/parallax/ocean', {
   type: 'ParallaxConfig',
   config: [
     {
@@ -655,7 +654,7 @@ communityart.registerConfig('flappybee/parallax/ocean', {
   ]
 });
 
-communityart.registerConfig('flappybee/parallax/roman', {
+scene.registerConfig('flappybee/parallax/roman', {
   type: 'ParallaxConfig',
   config: [
     {
@@ -710,7 +709,7 @@ communityart.registerConfig('flappybee/parallax/roman', {
   ]
 });
 
-communityart.registerConfig('flappybee/parallax/shore', {
+scene.registerConfig('flappybee/parallax/shore', {
   type: 'ParallaxConfig',
   config: [
     {
